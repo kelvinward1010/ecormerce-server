@@ -4,8 +4,8 @@ from bson import ObjectId
 from datetime import datetime
 
 router = APIRouter(
-    prefix="/item",
-    tags=["Item"]
+    prefix="/items",
+    tags=["Items"]
 )
 
 @router.get("/get_all")
