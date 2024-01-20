@@ -22,3 +22,15 @@ class User(BaseModel):
 class UserAuth(BaseModel):
     email: EmailStr
     password: str
+    
+class UserChangePassword(BaseModel):
+    email: EmailStr
+    old_password: str
+    password: str
+
+class UserUpdate(BaseModel):
+    name: str
+    email: EmailStr
+    image: str | None
+    
+    
