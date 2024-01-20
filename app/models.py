@@ -1,5 +1,4 @@
 from pydantic import BaseModel, EmailStr
-from datetime import datetime
 from typing import Optional, Literal
 
 
@@ -32,5 +31,18 @@ class UserUpdate(BaseModel):
     name: str
     email: EmailStr
     image: str | None
+
+
+
+#Items
+class Stars(BaseModel):
+    user_id: str
+    star: int
+    
+class Item(BaseModel):
+    name: str
+    description: str
+    image: str | None
+    price: int
     
     

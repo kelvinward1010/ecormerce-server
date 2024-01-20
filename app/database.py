@@ -6,6 +6,7 @@ connect = MongoClient(f"mongodb+srv://{settings.database_username}:{settings.dat
 db = connect.database
 
 collection_users = db['users']
+collection_items = db['items']
 
 try:
     connect.admin.command('ping')

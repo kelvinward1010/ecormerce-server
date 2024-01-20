@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import HTMLResponse
-from .routes import user, auth, admin
+from .routes import user, auth, admin, item
 import uvicorn
 
 app = FastAPI()
@@ -32,3 +32,4 @@ def welcome():
 app.include_router(admin.router)
 app.include_router(auth.router)
 app.include_router(user.router)
+app.include_router(item.router)
