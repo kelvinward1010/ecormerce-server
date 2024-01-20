@@ -12,3 +12,9 @@ router = APIRouter(
 async def get_items():
     items = schemas.list_items(database.collection_items.find())
     return items
+
+@router.get("/search")
+async def get_search_items(search):
+    myquery_name = { "name": { "$regex": search }}
+    items_query_title = schemas.list_items(database.collection_items.find(myquery_name))
+    return items_query_title
