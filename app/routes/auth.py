@@ -21,7 +21,11 @@ async def register(user: models.User):
     hashed_password = utils.has_password(user.password)
     user.password = hashed_password
     
-    user_add = database.collection_users.insert_one(dict(user, created_at = datetime.utcnow(), updated_at = datetime.now()))
+    user_add = database.collection_users.insert_one(dict(
+                                                        user, 
+                                                        created_at = datetime.utcnow(), 
+                                                        updated_at = datetime.now()),
+                                                    )
     
     if not user_add:
         raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail=f"Can't register account!")
