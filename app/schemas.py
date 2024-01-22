@@ -27,3 +27,16 @@ def initial_item(item) -> dict:
 
 def list_items(items) -> list:
     return [initial_item(item) for item in items]
+
+
+def initial_cart(cart) -> dict:
+    return {
+        "id": str(cart["_id"]),
+        "carts": cart["carts"],
+        "email_user_cart": cart["email_user_cart"],
+        "created_at": cart["created_at"],
+        "updated_at": cart["updated_at"],
+    }
+
+def list_carts(carts) -> list:
+    return [initial_cart(cart) for cart in carts]

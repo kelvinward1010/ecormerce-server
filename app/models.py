@@ -44,5 +44,18 @@ class Item(BaseModel):
     description: str
     image: str | None
     price: int
+    stars: list[Stars | None]
+
+
+#Carts
+class ItemInCart(BaseModel):
+    id: str
+    name: str
+    description: str
+    image: str | None
+    price: int
+    stars: list
     
-    
+class Carts(BaseModel):
+    carts: list
+    email_user_cart: str

@@ -55,7 +55,7 @@ async def get_all_items():
 
 @router.post("/create_item", status_code=status.HTTP_201_CREATED)
 async def create_item(item: models.Item):
-    newItem = database.collection_items.insert_one(dict(item, created_at = datetime.utcnow(), updated_at = datetime.now(), stars =[]))
+    newItem = database.collection_items.insert_one(dict(item, created_at = datetime.utcnow(), updated_at = datetime.now()))
     
     item_after_created = database.collection_items.find_one({"_id": ObjectId(newItem.inserted_id)})
     

@@ -7,6 +7,7 @@ db = connect.database
 
 collection_users = db['users']
 collection_items = db['items']
+collection_carts = db['carts']
 
 try:
     connect.admin.command('ping')

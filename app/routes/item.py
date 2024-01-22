@@ -1,7 +1,6 @@
-from fastapi import APIRouter, HTTPException, status, Depends
-from .. import models, database, utils, schemas, oauth2
+from fastapi import APIRouter, HTTPException, status
+from .. import database, schemas
 from bson import ObjectId
-from datetime import datetime
 
 router = APIRouter(
     prefix="/items",
