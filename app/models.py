@@ -59,3 +59,7 @@ class ItemInCart(BaseModel):
 class Carts(BaseModel):
     carts: list
     email_user_cart: str
+    
+class RemoveItemCart(BaseModel):
+    email_user_cart: str
+    id_item: str
