@@ -14,7 +14,7 @@ async def get_all_carts():
     carts = database.collection_carts.find()
     return {"data": schemas.list_carts(carts)}
 
-@router.get("/cart_find/{email_user_cart}")
+@router.get("/cart_find")
 async def get_cart_find(email_user_cart):
     cart_user = database.collection_carts.find_one({"email_user_cart": email_user_cart})
     if not cart_user:
@@ -33,9 +33,9 @@ async def create_cart(cart: models.Carts):
     
     return {"data": schemas.initial_cart(cart_after_created)}
 
-@router.put("/update_cart/{id}")
-async def create_cart(id, item_cart: models.ItemInCart):
-    find_cart = database.collection_carts.find_one({"_id": ObjectId(id)})
+@router.put("/add_item_to_cart")
+async def add_item_to_cart(email_user_cart, item_cart: models.ItemInCart):
+    find_cart = database.collection_carts.find_one({"email_user_cart": str(email_user_cart)})
 
     if not find_cart:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=f"Not found cart to update!")
@@ -43,7 +43,7 @@ async def create_cart(id, item_cart: models.ItemInCart):
     for cart in find_cart['carts']:
         if cart['id'] == item_cart.id:
             raise HTTPException(status_code=status.HTTP_409_CONFLICT, detail=f"This item is aleady in cart!")
-    
+    id = find_cart['_id']
     database.collection_carts.find_one_and_update({"_id": ObjectId(id)}, {
         "$push": dict(carts = {
             "id": item_cart.id,
