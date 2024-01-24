@@ -52,6 +52,7 @@ async def add_item_to_cart(email_user_cart, item_cart: models.ItemInCart):
             "image": item_cart.image,
             "price": item_cart.price,
             "stars": item_cart.stars,
+            "amount_in_stock": item_cart.amount_in_stock,
         })
     })
     find_cart_after_update = database.collection_carts.find_one({"_id": ObjectId(id)})
