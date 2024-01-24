@@ -45,6 +45,7 @@ class Item(BaseModel):
     image: str | None
     price: int
     stars: list[Stars | None]
+    amount_in_stock: int
 
 
 #Carts
@@ -55,6 +56,7 @@ class ItemInCart(BaseModel):
     image: str | None
     price: int
     stars: list
+    amount_in_stock: int
     
 class Carts(BaseModel):
     carts: list

@@ -21,6 +21,7 @@ def initial_item(item) -> dict:
         "image": item["image"],
         "price": item["price"],
         "stars": item["stars"],
+        "amount_in_stock": item["amount_in_stock"],
         "created_at": item["created_at"],
         "updated_at": item["updated_at"],
     }
