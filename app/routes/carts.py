@@ -75,3 +75,18 @@ async def remove_item_in_cart(initial_info: models.RemoveItemCart):
     })
     find_cart_after_update = database.collection_carts.find_one({"_id": ObjectId(id_carts)})
     return {"data": schemas.initial_cart(find_cart_after_update)}
+
+@router.put("/update_quantity_item_cart")
+async def update_quantity_item_cart(initial_info: models.UpdateItemCart):
+    find_cart = database.collection_carts.find_one({"email_user_cart": str(initial_info.email_user_cart)})
+
+    if not find_cart:
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=f"Not found cart to update!")
+    
+    id_carts = find_cart['_id']
+    
+    database.collection_carts.find_one_and_update({"_id": ObjectId(id_carts), "carts.id": initial_info.id_item}, {
+        "$set": {"carts.$.quantity": initial_info.quantity}
+    })
+    find_cart_after_update = database.collection_carts.find_one({"_id": ObjectId(id_carts)})
+    return {"data": schemas.initial_cart(find_cart_after_update)}

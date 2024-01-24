@@ -66,3 +66,8 @@ class Carts(BaseModel):
 class RemoveItemCart(BaseModel):
     email_user_cart: str
     id_item: str
+    
+class UpdateItemCart(BaseModel):
+    email_user_cart: str
+    id_item: str
+    quantity: int
