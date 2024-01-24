@@ -57,6 +57,7 @@ class ItemInCart(BaseModel):
     price: int
     stars: list
     amount_in_stock: int
+    quantity: int
     
 class Carts(BaseModel):
     carts: list
