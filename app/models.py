@@ -70,4 +70,5 @@ class RemoveItemCart(BaseModel):
 class UpdateItemCart(BaseModel):
     email_user_cart: str
     id_item: str
-    quantity: int
+    plus: bool
+    minus: bool

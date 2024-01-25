@@ -85,8 +85,21 @@ async def update_quantity_item_cart(initial_info: models.UpdateItemCart):
     
     id_carts = find_cart['_id']
     
-    database.collection_carts.find_one_and_update({"_id": ObjectId(id_carts), "carts.id": initial_info.id_item}, {
-        "$set": {"carts.$.quantity": initial_info.quantity}
-    })
+    global quantity
+    
+    for item in find_cart['carts']:
+        if item['id'] == initial_info.id_item:
+            quantity = item['quantity']
+    
+    if initial_info.plus == True:
+        database.collection_carts.find_one_and_update({"_id": ObjectId(id_carts), "carts.id": initial_info.id_item}, {
+            "$set": {"carts.$.quantity": int(quantity + 1)}
+        })
+    
+    if initial_info.minus == True:
+        database.collection_carts.find_one_and_update({"_id": ObjectId(id_carts), "carts.id": initial_info.id_item}, {
+            "$set": {"carts.$.quantity": int(quantity - 1)}
+        })
+    
     find_cart_after_update = database.collection_carts.find_one({"_id": ObjectId(id_carts)})
     return {"data": schemas.initial_cart(find_cart_after_update)}
